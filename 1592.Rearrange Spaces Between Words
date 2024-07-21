@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string reorderSpaces(string text) {
+       int wc = 0, spc = 0;
+       int n = text.size();
+       for(int i = 0; i < n; i++) {
+            // total word count
+            if (text[i] != ' ')wc++;
+                while (i < n && text[i] != ' ') {
+                       i++;
+                   }
+            // total space count       
+            if(text[i] == ' '){
+                spc++;
+            }   
+       }
+
+        int ratio = (wc > 1) ? spc / (wc - 1) : 0;  
+        string result = "";
+        int i = 0; 
+        while(i < n){
+             while(i<n && text[i]==' ')i++; 
+             while(i<n && text[i]!=' '){
+                  result += text[i++];
+              }
+                if(result.size() == n)break; 
+
+                
+                int x = 0;
+                while(x < ratio){
+                    result += ' ';
+                    if(result.size() == n)break;
+                    x++; 
+               }
+            i++;      
+        }
+
+           
+            int y = 0;
+               while (result.size() < n) {
+                result += ' ';
+                y++;
+          }
+  
+        return result;
+    }
+};
