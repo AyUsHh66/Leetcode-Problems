@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<int> sortJumbled(vector<int>& mapping, vector<int>& nums) {
+        int n = nums.size();
+        int num,transformed_num,power;
+        vector<pair<int, int>> transformed;
+        
+        for (int i = 0; i < n; i++) {
+            num = nums[i];
+             transformed_num = 0;
+            power = 1;
+            
+            if (num == 0) {
+                transformed_num = mapping[0];
+            } else {
+                while (num > 0) {
+                    int digit = num % 10;
+                    transformed_num += mapping[digit] * power;
+                    power *= 10;
+                    num /= 10;
+                }
+            }
+            
+            transformed.push_back({transformed_num, i});
+        }
+        
+        sort(transformed.begin(), transformed.end());
+        vector<int> result; 
+    for (const auto& p : transformed) {
+        result.push_back(nums[p.second]); 
+    }
+    
+    return result;
+       
+        
+        return result;
+    }
+};
